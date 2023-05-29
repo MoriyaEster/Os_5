@@ -159,11 +159,13 @@ static void *aoThread(void *arg)
 {
     PAO ao = (PAO)arg;
     void *task;
-    while (task = dequeue(ao->queue))
+    while ((task = dequeue(ao->queue)) != NULL)
     {
         ao->func(ao->next, task);
     }
+    return task;
 }
+
 
 PAO CreateActiveObject(PAO next, void (*func)(PAO, void *))
 {
