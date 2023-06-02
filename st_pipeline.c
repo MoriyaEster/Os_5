@@ -227,6 +227,7 @@ void func2(PAO next, void *task)
 void func3(PAO next, void *task)
 {
     int num = *(int *)task;
+    printf("%d\n", num);
     isPrime(num);
     num -= 13;
     void *task3 = &num;
@@ -252,11 +253,6 @@ int main(int argc, char *argv[])
     }
     if (argc == 2)
     {
-        // if (isdigit(argv[1]))
-        // {
-        //     printf("usage: st_pipeline <N> <(optional)RAND> \n");
-        //     return (1);
-        // }
         srand(time(NULL));
         int min = 0;
         int max = 9;
@@ -264,11 +260,6 @@ int main(int argc, char *argv[])
     }
     if (argc == 3)
     {
-        // if (isdigit(argv[1]) && isdigit(argv[2]))
-        // {
-        //     printf("usage: st_pipeline <N> <(optional)RAND> \n");
-        //     return (1);
-        // }
 
         rand_seed = atoi(argv[2]);
     }
