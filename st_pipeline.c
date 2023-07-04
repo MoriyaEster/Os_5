@@ -104,7 +104,9 @@ void *dequeue(Pqueue queue)
     pthread_mutex_lock(&queue->mutex);
     while (queue->size <= 0)
     {
+        pthread_mutex_unlock(&queue->mutex);
         pthread_cond_wait(&queue->cond, &queue->mutex);
+        pthread_mutex_lock(&queue->mutex);
     }
 
     Pnode current = queue->head;
